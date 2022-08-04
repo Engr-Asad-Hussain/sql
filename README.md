@@ -80,7 +80,7 @@ A primary key is used as a unique identifier to quickly parse data within the ta
 
 ### `ON DELETE SET NULL`
 If we delete the record(s) from the referenced table. The record(s) in the referencing table is set to null.
-```.sql
+```sql
 Example,
 CREATE alphascale.branch (
   branch_id INT PRIMARY KEY,
@@ -101,7 +101,7 @@ SELECT * FROM alphascale.branch
 ### `ON DELETE CASCADE`
 - If we delete the record(s) from the referenced table. The record(s) in the referencing table will also be deleted.
 - Usually when we have a COMPOSITE PRIMARY KEY or the PRIMARY KEY is itself a FOREIGN KEY we mostly used ON DELTE CASCADE otherwise if we do like ON DELETE SET NULL. Then ones the row delete, it sets the value as NULL, but PRIMARY KEY cannot be NULL.
-```.sql
+```sql
 Example,
 CREATE alphascale.branch_supplier(
   branch_id INT,
@@ -167,7 +167,7 @@ DROP DATABASE {database_name};
 
 ### Create table
 > $ `CREATE TABLE {database_name}.{table_name} ( {column} {data_type} );`
-```
+```sql
 Example 1,
 CREATE TABLE alphascale.student (
     student_id INT PRIMARY KEY,
@@ -175,7 +175,7 @@ CREATE TABLE alphascale.student (
     major VARCHAR(20)
 );
 ```
-```
+```sql
 Example 2,
 CREATE TABLE alphascale.students(
 	student_id INT,
@@ -184,7 +184,7 @@ CREATE TABLE alphascale.students(
 	PRIMARY KEY(student_id)                   -- Primary key can also be declared here
 );
 ```
-```
+```sql
 Example 3,
 CREATE TABLE alphascale.students(
 	student_id INT,
@@ -193,7 +193,7 @@ CREATE TABLE alphascale.students(
 	PRIMARY KEY(student_id)
 );
 ```
-```
+```sql
 Example 4,
 CREATE TABLE alphascale.students(
 	student_id INT AUTO_INCREMENT,            -- auto increment the primary key
@@ -206,7 +206,7 @@ CREATE TABLE alphascale.students(
 
 ### Get details of table
 > $ `DESCRIBE TABLE {database_name}.{table_name};`
-```
+```sql
 Example,
 DESCRIBE TABLE alphascale.student;
 ```
@@ -214,7 +214,7 @@ DESCRIBE TABLE alphascale.student;
 
 ### Delete table
 > $ `DROP TABLE {database_name}.{table_name};`
-```
+```sql
 Example,
 DROP TABLE alphascale.student;
 ```
@@ -222,7 +222,7 @@ DROP TABLE alphascale.student;
 
 ### Add column to existant table
 > $ `ALTER TABLE {database_name}.{table_name} ADD {column} {data_type};`
-```
+```sql
 Example,
 ALTER TABLE alphascale.student ADD gpa DECIMAL(3, 2);
 ```
@@ -230,7 +230,7 @@ ALTER TABLE alphascale.student ADD gpa DECIMAL(3, 2);
 
 ### Delete column from existant table
 > $ `ALTER TABLE {database_name}.{table_name} DROP {column};`
-```
+```sql
 Example,
 ALTER TABLE alphascale.student DROP gpa;
 ```
@@ -238,15 +238,15 @@ ALTER TABLE alphascale.student DROP gpa;
 
 ### Insert a record in table
 > $ `INSERT INTO {database_name}.{table_name} VALUES({item}, {item}, {item});`
-```
+```sql
 Example 1,
 INSERT INTO alphascale.students VALUES(1, 'jack', 'biology');
 ```
-```
+```sql
 Example 2,
 INSERT INTO alphascale.students(student_id, name) VALUES(4, 'Clair');  -- It can be used in case of default value.
 ```
-```
+```sql
 Example 3,
 INSERT INTO alphascale.students VALUES (2, NULL, 'telecommunication');
 ```
@@ -254,87 +254,87 @@ INSERT INTO alphascale.students VALUES (2, NULL, 'telecommunication');
 
 ### Select a record from a table
 > $ `SELECT {condition} FROM {database_name}.{table_name}`
-```
+```sql
 Example 1,
 SELECT * FROM alphascale.students;            -- select every thing
 ```
-```
+```sql
 Example 2,
 SELECT username, major FROM alphascale.students;     -- select username and major column 
 ```
-```
+```sql
 Example 3,
 SELECT first_name AS forename, last_name AS surname  -- aliase first_name as forename
 FROM alphascale.employee; 
 ```
-```
+```sql
 Example 3,
 SELECT username, major 
 FROM alphascale.students
 ORDER BY student_id DESC;                      -- order by descending order of student_id
 ```
-```
+```sql
 Example 4,
 SELECT * 
 FROM alphascale.students
 ORDER BY student_id ASC;
 ```
-```
+```sql
 Example 5,
 SELECT *
 FROM alphascale.students
 ORDER BY major;                               -- ordered in alphabatical order of major
 ```
-```
+```sql
 Example 6,
 SELECT *
 FROM alphascale.students
 ORDER BY major, student_id DESC;
 ```
-```
+```sql
 Example 7,
 SELECT *
 FROM alphascale.students
 LIMIT 2;                                      -- it will only show 2 records
 ```
-```
+```sql
 Example 8,
 SELECT *
 FROM alphascale.students
 ORDER BY major
 LIMIT 2;
 ```
-```
+```sql
 Example 9,
 SELECT *
 FROM alphascale.students
 WHERE major = 'chemistry';
 ```
-```
+```sql
 Example 10,
 SELECT username, major
 FROM alphascale.students
 WHERE major = 'chemistry';
 ```
-```
+```sql
 Example 11,
 SELECT username, major
 FROM alphascale.students
 WHERE major = 'chemistry' OR major = 'biology';
 ```
-```
+```sql
 Example 12,
 SELECT *
 FROM alphascale.students
 WHERE major = 'chemistry' OR username = 'asad@example.com';
 ```
-```
+```sql
 Example 13,
 SELECT *
 FROM alphascale.students
 WHERE major IN ('biology', 'chemistry');         -- if major is bioloyg or chemistry select it
 ```
-```
+```sql
 Example 14,
 SELECT DISTINCT sex                              -- select distinct entries in column 'sex'
 FROM alphascale.employee;
@@ -343,25 +343,25 @@ FROM alphascale.employee;
 
 ### Update a record
 > $ `UPDATE {database_name}.{table_name} SET {column} = '{new_value}' WHERE {codition}`
-```
+```sql
 Example 1,
 UPDATE alphascale.students
 SET major = 'Bio'
 WHERE major = 'electronics';
 ```
-```
+```sql
 Example 2,
 UPDATE alphascale.students 
 SET major = 'Bio'
 WHERE major = 'electronics' OR major = 'computer science';
 ```
-```
+```sql
 Example 3,
 UPDATE alphascale.students 
 SET username = 'example@example.com', major = 'default major'
 WHERE student_id = 1;
 ```
-```
+```sql
 Example 4,
 UPDATE alphascale.students 
 SET username = 'example@example.com';     -- update all records
@@ -370,17 +370,17 @@ SET username = 'example@example.com';     -- update all records
 
 ### Delete a record
 > $ `DELETE FROM {database_name}.{table_name} WHERE {codition}`
-```
+```sql
 Example 1,
 DELETE FROM alphascale.students
 WHERE student_id = 1;
 ```
-```
+```sql
 Example 2,
 DELETE FROM alphascale.students
 WHERE username = 'tom@example.com' AND major = 'default major';
 ```
-```
+```sql
 Example 3,
 DELETE FROM alphascale.students;          -- delete all records
 ```
@@ -388,7 +388,7 @@ DELETE FROM alphascale.students;          -- delete all records
 
 ### Count the records
 > $ `SELECT COUNT({column}) FROM {database_name}.{table_name}`
-```
+```sql
 Example,
 SELECT COUNT(emp_id)
 FROM alphascale.employee;
@@ -397,7 +397,7 @@ FROM alphascale.employee;
 
 ### Average of column
 > $ `SELECT AVG({column} FROM {database_name}.{table_name}`
-```
+```sql
 Example,
 SELECT AVG(salary)
 FROM alphascale.employee;
@@ -406,7 +406,7 @@ FROM alphascale.employee;
 
 ### Sum of column
 > $ `SELECT SUM({column}) FROM {database_name}.{table_name}`
-```
+```sql
 Example,
 SELECT SUM(salary)
 FROM alphascale.employee;
@@ -415,13 +415,13 @@ FROM alphascale.employee;
 
 ### Aggregation of column
 > $ `SELECT COUNT({column}), {column} FROM {database_name}.{table_name} GROUP BY {column}`
-```
+```sql
 Example 1,
 SELECT COUNT(sex), sex
 FROM alphascale.employee
 GROUP BY sex;
 ```
-```
+```sql
 Example 2,
 SELECT SUM(total_sales), emp_id
 FROM alphascale.works_with
@@ -431,19 +431,19 @@ GROUP BY emp_it;
 
 ### Wild card %
 > $ `SELECT * FROM {database_name}.{table_name} WHERE {column} LIKE '{condition}'`
-```
+```sql
 Example 1,
 SELECT *
 FROM alphascale.client
 WHERE client_name LIKE '%LLC'         -- string ends with LLC
 ```
-```
+```sql
 Example 2,
 SELECT *
 FROM alphascale.client
 WHERE client_name LIKE '%Fe%'         -- {number of char}Fe{number of char}
 ```
-```
+```sql
 Example 3,
 SELECT *
 FROM alphascale.employee
@@ -453,7 +453,7 @@ WHERE client_name LIKE '%-10-%'
 
 ### Wild card _
 > $ `SELECT * FROM {database_name}.{table_name} WHERE {column} LIKE '{condition}'`
-```
+```sql
 Example 1,
 SELECT *
 FROM alphascale.client
@@ -463,7 +463,7 @@ WHERE client_name LIKE '____-10%'         -- _ means only 1 char
 
 ### Union
 > $ `SELECT ... UNION SELECT ...;`
-```
+```sql
 Example 1,
 SELECT first_name                   -- data type of first_name and branch_name should be same
 FROM alphascale.employee            -- same number of columns
@@ -471,7 +471,7 @@ UNION
 SELECT branch_name
 FROM alphascale.branch;
 ```
-```
+```sql
 Example 2,
 SELECT first_name, emp_id           -- same number of columns
 FROM alphascale.employee
@@ -483,7 +483,7 @@ FROM alphascale.branch;
 
 ### Join
 > $ `SELECT ... FROM {database}.{table} JOIN {database}.{table} ON {condition}`
-```
+```sql
 Example 1,
 SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
 FROM alphascale.employee
@@ -494,7 +494,7 @@ ON employee.emp_id = branch.mgr_id;             -- Joins two or more columns int
 
 ### Left Join
 > $ `SELECT ... FROM {database}.{table} LEFT JOIN {database}.{table} ON {condition}`
-```
+```sql
 Example 1,
 SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
 FROM alphascale.employee
@@ -505,7 +505,7 @@ ON employee.emp_id = branch.mgr_id;             -- all rows of left, selected ro
 
 ### Right Join
 > $ `SELECT ... FROM {database}.{table} RIGHT JOIN {database}.{table} ON {condition}`
-```
+```sql
 Example 1,
 SELECT employee.emp_id, employee.first_name, employee.last_name, branch.branch_name
 FROM alphascale.employee
@@ -516,7 +516,7 @@ ON employee.emp_id = branch.mgr_id;             -- all rows of right, selected r
 
 ### Nested Query
 > $ `SELECT ... FROM {database}.{table} WHERE {column} IN ( {second_query} );`
-```
+```sql
 Example,
 SELECT employee.emp_id, employee.first_name, employee.last_name, employee.salary
 FROM alphascale.employee
@@ -529,7 +529,7 @@ WHERE emp_id IN (
 
 ### Nested Query
 > $ `SELECT ... FROM {database}.{table} WHERE {column} IN ( {second_query} );`
-```
+```sql
 Example,
 SELECT employee.emp_id, employee.first_name, employee.last_name, employee.branch_id
 FROM alphascale.employee
@@ -542,7 +542,7 @@ WHERE branch_id IN (
 
 ### Nested Query
 > $ `SELECT ... FROM {database}.{table} WHERE {column} IN ( {second_query} );`
-```
+```sql
 Example,
 SELECT employee.emp_id, employee.first_name
 FROM alphascale.employee
@@ -586,8 +586,8 @@ Entity Relationship Diagrams
 
 
 ## Cardianlity Relationships
-Create a Cardianlity Relationship for [sample database](https://lucid.app/lucidchart/c432c7bd-083f-4e48-8a94-28b137ef8966/edit?page=0_0&invitationId=inv_d85cb984-79e7-4ddc-ac7f-0d8410fe439c#)
+- Create a Cardianlity Relationship for [sample database](https://lucid.app/lucidchart/c432c7bd-083f-4e48-8a94-28b137ef8966/edit?page=0_0&invitationId=inv_d85cb984-79e7-4ddc-ac7f-0d8410fe439c#)
 
-Studied the cardianlity relationship. Create notes in my diary.
+- Studied the cardianlity relationship. Create notes in my diary.
 
 
