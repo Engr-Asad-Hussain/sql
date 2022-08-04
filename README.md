@@ -1,5 +1,5 @@
 # Structured Query Language
-Structured Query Language (SQL) Backend (BE) template
+Structured Query Language (SQL)
 
 ## Contents
 - [Reference](#reference)
@@ -80,7 +80,7 @@ A primary key is used as a unique identifier to quickly parse data within the ta
 
 ### `ON DELETE SET NULL`
 If we delete the record(s) from the referenced table. The record(s) in the referencing table is set to null.
-```
+```.sql
 Example,
 CREATE alphascale.branch (
   branch_id INT PRIMARY KEY,
@@ -101,7 +101,7 @@ SELECT * FROM alphascale.branch
 ### `ON DELETE CASCADE`
 - If we delete the record(s) from the referenced table. The record(s) in the referencing table will also be deleted.
 - Usually when we have a COMPOSITE PRIMARY KEY or the PRIMARY KEY is itself a FOREIGN KEY we mostly used ON DELTE CASCADE otherwise if we do like ON DELETE SET NULL. Then ones the row delete, it sets the value as NULL, but PRIMARY KEY cannot be NULL.
-```
+```.sql
 Example,
 CREATE alphascale.branch_supplier(
   branch_id INT,
@@ -151,7 +151,7 @@ Constraints could be either on a column level or a table level. The column level
 
 ### Create database
 > $ `CREATE DATABASE {database_name};`
-```
+```sql
 Example,
 CREATE DATABASE alphascale;
 ```
